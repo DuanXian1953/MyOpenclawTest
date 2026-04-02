@@ -1,22 +1,134 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>OpenClaw Test - 主页</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw - 主页</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; }
-        h1 { color: #333; }
-        .menu { margin: 20px 0; }
-        .menu a { display: inline-block; margin: 0 10px 10px 0; padding: 10px 15px; background: #0366d6; color: white; text-decoration: none; border-radius: 5px; }
-        .menu a:hover { background: #0056b3; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .main-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .intro-link {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 20px;
+        }
+        
+        .intro-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .other-links {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .other-links a {
+            color: #666;
+            text-decoration: none;
+            padding: 8px 15px;
+            border: 2px solid #eee;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .other-links a:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            color: #999;
+            font-size: 0.9em;
+        }
     </style>
 </head>
 <body>
-    <h1>OpenClaw 测试网站</h1>
-    <p>网站正在建设中，请访问以下页面：</p>
-    <div class="menu">
-        <a href="openclaw-intro.html">OpenClaw 介绍</a>
-        <a href="about.html">关于我们</a>
-        <a href="privacy-policy.html">隐私政策</a>
+    <div class="main-container">
+        <div class="logo">O</div>
+        <h1>OpenClaw Test</h1>
+        <p class="subtitle">先进的人工智能与机器学习测试平台</p>
+        
+        <a href="openclaw-intro.html" class="intro-link">
+            立即了解 OpenClaw →
+        </a>
+        
+        <div class="other-links">
+            <a href="about.html">关于我们</a>
+            <a href="privacy-policy.html">隐私政策</a>
+        </div>
+        
+        <div class="footer">
+            <p>© 2023 OpenClaw Test. All rights reserved.</p>
+        </div>
     </div>
+    
+    <!-- 自动重定向（备用） -->
+    <script>
+        // 如果用户5秒后还没有点击，自动重定向
+        setTimeout(function() {
+            window.location.href = "openclaw-intro.html";
+        }, 5000);
+    </script>
 </body>
 </html>
