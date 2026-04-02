@@ -1,0 +1,2530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw - 你的 AI 助手 | 安装、飞书接入、卸载指南</title>
+    
+    <!-- Google AdSense 验证代码（审核后替换） -->
+    <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="OpenClaw 是你的个人 AI 助手，运行在你的设备上。支持 Kimi、DeepSeek、通义千问等 30+ 模型，可接入飞书、Telegram 等渠道。完全开源，数据本地存储。">
+    <meta name="keywords" content="OpenClaw, AI 助手，本地 AI, Kimi, DeepSeek, 通义千问，飞书机器人，开源 AI, 个人助手，自动化">
+    <meta name="author" content="OpenClaw Community">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="OpenClaw - 你的个人 AI 助手">
+    <meta property="og:description" content="运行在你设备上的开源 AI 助手，支持 30+ 模型，数据完全本地存储。">
+    <meta property="og:url" content="https://openclaw.ai/intro">
+    <meta property="og:site_name" content="OpenClaw">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="OpenClaw - 你的个人 AI 助手">
+    <meta name="twitter:description" content="运行在你设备上的开源 AI 助手，支持 30+ 模型，数据完全本地存储。">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://openclaw.ai/intro">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦞</text></svg>">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "OpenClaw",
+      "applicationCategory": "Productivity",
+      "operatingSystem": "Windows, macOS, Linux",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "OpenClaw 是一个开源的 AI 助手框架，可以运行在你自己的设备上。支持 Kimi、DeepSeek、通义千问等 30+ 模型。",
+      "featureList": "本地运行、多模型支持、飞书接入、定时任务、记忆系统、文件访问",
+      "url": "https://openclaw.ai",
+      "license": "https://github.com/openclaw/openclaw/blob/main/LICENSE"
+    }
+    </script>
+    
+    <!-- 打印样式 -->
+    <style>
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .nav, .theme-toggle, .toc-toggle, .toc-sidebar, .back-to-top, .ad-container {
+                display: none !important;
+            }
+            
+            .section {
+                box-shadow: none !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            
+            pre {
+                break-inside: avoid;
+            }
+            
+            a {
+                text-decoration: underline;
+                color: black !important;
+            }
+            
+            a[href^="http"]::after {
+                content: " (" attr(href) ")";
+                font-size: 0.8em;
+            }
+        }
+    </style>
+    
+    <!-- Prism.js 代码高亮 -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-yaml.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            transition: background 0.3s ease;
+        }
+        
+        /* 深色模式 */
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        
+        body.dark-mode .container {
+            color: #e0e0e0;
+        }
+        
+        body.dark-mode .section {
+            background: #1e1e2e;
+            color: #e0e0e0;
+        }
+        
+        body.dark-mode .nav {
+            background: rgba(30, 30, 46, 0.95);
+        }
+        
+        body.dark-mode .step {
+            background: #2a2a3e;
+            border-left-color: #764ba2;
+        }
+        
+        body.dark-mode .config-box {
+            background: #1a1a2e;
+        }
+        
+        body.dark-mode details {
+            background: #2a2a3e;
+        }
+        
+        body.dark-mode table tr:nth-child(even) {
+            background: #2a2a3e;
+        }
+        
+        body.dark-mode table tr:hover {
+            background: #3a3a4e;
+        }
+        
+        body.dark-mode .warning {
+            background: #4a3b00;
+            border-left-color: #f0c040;
+            color: #fff3cd;
+        }
+        
+        body.dark-mode .danger {
+            background: #4a1a1a;
+            border-left-color: #e05050;
+            color: #f8d7da;
+        }
+        
+        body.dark-mode .info {
+            background: #1a3a4a;
+            border-left-color: #40c0f0;
+            color: #d1ecf1;
+        }
+        
+        body.dark-mode .success {
+            background: #1a4a2a;
+            border-left-color: #50d070;
+            color: #d4edda;
+        }
+        
+        /* 深色模式代码块 */
+        body.dark-mode pre code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+        }
+        
+        /* 目录侧边栏 */
+        .toc-sidebar {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.95);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .toc-sidebar.show {
+            display: block;
+        }
+        
+        .toc-sidebar h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+        
+        .toc-sidebar ul {
+            list-style: none;
+        }
+        
+        .toc-sidebar li {
+            margin-bottom: 8px;
+        }
+        
+        .toc-sidebar a {
+            color: #6c757d;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: color 0.3s;
+        }
+        
+        .toc-sidebar a:hover {
+            color: #667eea;
+        }
+        
+        body.dark-mode .toc-sidebar {
+            background: rgba(30, 30, 46, 0.95);
+        }
+        
+        body.dark-mode .toc-sidebar a {
+            color: #a0a0a0;
+        }
+        
+        body.dark-mode .toc-sidebar a:hover {
+            color: #764ba2;
+        }
+        
+        /* 主题切换按钮 */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            font-size: 1.5em;
+            z-index: 1001;
+            transition: all 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        /* 目录切换按钮 */
+        .toc-toggle {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            font-size: 1.5em;
+            z-index: 1001;
+            transition: all 0.3s;
+        }
+        
+        .toc-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .toc-sidebar {
+                display: none !important;
+            }
+            
+            .nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab-btn {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* 导航栏 */
+        .nav {
+            background: rgba(255,255,255,0.95);
+            border-radius: 50px;
+            padding: 15px 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .nav a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .nav a:hover {
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+        }
+        
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+        
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section h3 {
+            color: #764ba2;
+            margin: 25px 0 15px 0;
+            font-size: 1.4em;
+        }
+        
+        .section h4 {
+            color: #5a67d8;
+            margin: 20px 0 10px 0;
+            font-size: 1.15em;
+        }
+        
+        .section ul, .section ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .section li {
+            margin-bottom: 8px;
+        }
+        
+        .section p {
+            margin-bottom: 15px;
+        }
+        
+        /* 代码块 */
+        pre {
+            position: relative;
+            margin: 15px 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        pre code {
+            display: block;
+            padding: 20px;
+            overflow-x: auto;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: all 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .copy-btn.copied {
+            background: #48bb78;
+        }
+        
+        /* 提示框 */
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .danger {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .info {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .step {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+        }
+        
+        .step strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        /* 表格 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+        
+        table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        table tr:hover {
+            background: #e9ecef;
+        }
+        
+        /* 标签页 */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #dee2e6;
+            margin-bottom: 20px;
+        }
+        
+        .tab-btn {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            color: #6c757d;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn:hover {
+            color: #667eea;
+        }
+        
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            font-weight: 600;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* 可展开详情 */
+        details {
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        details summary {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #667eea;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        details summary::after {
+            content: "+";
+            font-size: 1.5em;
+            transition: transform 0.3s;
+        }
+        
+        details[open] summary::after {
+            transform: rotate(45deg);
+        }
+        
+        details[open] summary {
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        details .content {
+            padding: 20px;
+        }
+        
+        /* AdSense 广告位优化 */
+        .ad-container {
+            margin: 30px auto;
+            text-align: center;
+            min-height: 90px;
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .ad-container:hover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.05);
+        }
+        
+        .ad-container::before {
+            content: "📢 广告位 - 配置 AdSense 后显示广告";
+        }
+        
+        .section .ad-container {
+            background: #f8f9fa;
+            border-color: #dee2e6;
+        }
+        
+        /* 广告标签 */
+        .ad-label {
+            font-size: 0.75em;
+            color: #999;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+        
+        /* 广告位尺寸变体 */
+        .ad-horizontal {
+            min-height: 90px;
+            max-width: 728px;
+        }
+        
+        .ad-rectangle {
+            min-height: 250px;
+            max-width: 300px;
+        }
+        
+        .ad-leaderboard {
+            min-height: 90px;
+            max-width: 970px;
+        }
+        
+        /* 原生广告样式 */
+        .native-ad {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .native-ad-title {
+            font-size: 1.1em;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .native-ad-content {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .native-ad-footer {
+            margin-top: 15px;
+            font-size: 0.85em;
+            color: #999;
+        }
+        
+        footer {
+            text-align: center;
+            color: white;
+            padding: 30px;
+            opacity: 0.8;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 8px;
+        }
+        
+        /* 配置示例框 */
+        .config-box {
+            background: #2d2d2d;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            color: #f8f8f2;
+        }
+        
+        .config-box h5 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        /* 权限标签 */
+        .permission-tag {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 3px;
+            font-family: monospace;
+        }
+        
+        /* 返回顶部 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+        
+        .back-to-top:hover {
+            background: #764ba2;
+            transform: translateY(-5px);
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+        .section:nth-child(6) { animation-delay: 0.5s; }
+        .section:nth-child(7) { animation-delay: 0.6s; }
+        .section:nth-child(8) { animation-delay: 0.7s; }
+        .section:nth-child(9) { animation-delay: 0.8s; }
+        .section:nth-child(10) { animation-delay: 0.9s; }
+        
+        /* 悬停效果增强 */
+        .section:hover {
+            transform: translateY(-2px);
+            transition: transform 0.3s ease;
+        }
+        
+        /* 加载动画 */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(102, 126, 234, 0.3);
+            border-radius: 50%;
+            border-top-color: #667eea;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* 更新徽章 */
+        .update-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-left: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 主题切换按钮 -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色模式">🌙</button>
+    
+    <!-- 目录切换按钮 -->
+    <button class="toc-toggle" onclick="toggleTOC()" title="显示/隐藏目录">📑</button>
+    
+    <!-- 搜索框 -->
+    <div style="position: fixed; bottom: 90px; right: 20px; z-index: 1001;">
+        <input type="text" id="searchBox" placeholder="🔍 搜索..." 
+               style="width: 200px; padding: 12px 15px; border: none; border-radius: 25px; 
+                      box-shadow: 0 5px 20px rgba(0,0,0,0.2); font-size: 0.95em;
+                      outline: none; transition: all 0.3s;"
+               onfocus="this.style.width='280px'" 
+               onblur="this.style.width='200px'"
+               oninput="searchContent(this.value)">
+    </div>
+    
+    <!-- 目录侧边栏 -->
+    <div class="toc-sidebar" id="tocSidebar">
+        <h4>📑 目录</h4>
+        <ul>
+            <li><a href="#intro">📖 什么是 OpenClaw？</a></li>
+            <li><a href="#install">🚀 安装与配置</a></li>
+            <li><a href="#config">🤖 AI 模型配置</a></li>
+            <li><a href="#feishu">📱 接入飞书</a></li>
+            <li><a href="#skills">🧩 技能扩展</a></li>
+            <li><a href="#performance">⚡ 性能优化</a></li>
+            <li><a href="#uninstall">🗑️ 删除/卸载</a></li>
+            <li><a href="#faq">❓ 常见问题</a></li>
+            <li><a href="#resources">🔗 资源与社区</a></li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <!-- 导航栏 -->
+        <nav class="nav">
+            <a href="openclaw-intro.html#intro">🏠 首页</a>
+            <a href="about.html">ℹ️ 关于</a>
+            <a href="#intro">📖 介绍</a>
+            <a href="#install">🚀 安装</a>
+            <a href="#feishu">📱 飞书接入</a>
+            <a href="#skills">🧩 技能扩展</a>
+            <a href="#config">⚙️ 配置</a>
+            <a href="#performance">⚡ 性能</a>
+            <a href="#faq">❓ FAQ</a>
+        </nav>
+
+        <header>
+            <h1>🦞 OpenClaw <span class="update-badge">📝 2026.4.2 更新</span></h1>
+            <p>你的个人 AI 助手 · 运行在你的设备上</p>
+            <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.8;">适用版本：OpenClaw 2026.3.24+</p>
+        </header>
+
+        <!-- 顶部广告位 - Leaderboard -->
+        <div class="ad-label">广告</div>
+        <div class="ad-container ad-leaderboard">
+            <!-- 替换为 AdSense 代码 -->
+            <!--
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="顶部广告位 ID" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            -->
+        </div>
+
+        <!-- 介绍 -->
+        <div class="section" id="intro">
+            <h2>📖 什么是 OpenClaw？</h2>
+            <p>OpenClaw 是一个开源的 AI 助手框架，可以运行在你自己的设备上。它不是云端服务，而是完全本地运行的智能助手。</p>
+            
+            <h3>核心特点</h3>
+            <ul>
+                <li><strong>🏠 本地运行</strong> - 在你的电脑上运行，数据不出设备</li>
+                <li><strong>🤖 多模型支持</strong> - 支持 Kimi、通义千问、DeepSeek、Claude 等 30+ 模型</li>
+                <li><strong>💬 多渠道接入</strong> - 支持飞书、Telegram、WhatsApp、Discord 等</li>
+                <li><strong>📁 文件访问</strong> - 可以读写你的工作区文件</li>
+                <li><strong>🌐 网页浏览</strong> - 可以搜索网络、访问网页</li>
+                <li><strong>⏰ 定时任务</strong> - 支持 cron 定时任务和提醒</li>
+                <li><strong>🧠 记忆系统</strong> - 长期记忆和日常笔记，保持上下文连贯</li>
+                <li><strong>📱 设备控制</strong> - 可连接手机/平板，查看摄像头、屏幕等</li>
+            </ul>
+            
+            <div class="info">
+                <strong>💡 适合场景：</strong>个人助手、自动化任务、文件处理、日程管理、信息整理、代码辅助等
+            </div>
+            
+            <h3>🆚 与其他 AI 助手对比</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>特性</th>
+                        <th>OpenClaw</th>
+                        <th>ChatGPT</th>
+                        <th>Claude</th>
+                        <th>文心一言</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>数据隐私</strong></td>
+                        <td>✅ 完全本地</td>
+                        <td>❌ 云端存储</td>
+                        <td>❌ 云端存储</td>
+                        <td>❌ 云端存储</td>
+                    </tr>
+                    <tr>
+                        <td><strong>模型选择</strong></td>
+                        <td>✅ 30+ 模型</td>
+                        <td>⚠️ 仅 OpenAI</td>
+                        <td>⚠️ 仅 Anthropic</td>
+                        <td>⚠️ 仅百度</td>
+                    </tr>
+                    <tr>
+                        <td><strong>文件访问</strong></td>
+                        <td>✅ 直接读写</td>
+                        <td>❌ 需手动上传</td>
+                        <td>❌ 需手动上传</td>
+                        <td>❌ 需手动上传</td>
+                    </tr>
+                    <tr>
+                        <td><strong>本地部署</strong></td>
+                        <td>✅ 支持 Ollama</td>
+                        <td>❌ 不支持</td>
+                        <td>❌ 不支持</td>
+                        <td>❌ 不支持</td>
+                    </tr>
+                    <tr>
+                        <td><strong>定时任务</strong></td>
+                        <td>✅ 内置 cron</td>
+                        <td>❌ 不支持</td>
+                        <td>❌ 不支持</td>
+                        <td>❌ 不支持</td>
+                    </tr>
+                    <tr>
+                        <td><strong>记忆系统</strong></td>
+                        <td>✅ 长期记忆</td>
+                        <td>⚠️ 会话内</td>
+                        <td>⚠️ 会话内</td>
+                        <td>⚠️ 会话内</td>
+                    </tr>
+                    <tr>
+                        <td><strong>开源</strong></td>
+                        <td>✅ 完全开源</td>
+                        <td>❌ 闭源</td>
+                        <td>❌ 闭源</td>
+                        <td>❌ 闭源</td>
+                    </tr>
+                    <tr>
+                        <td><strong>自定义技能</strong></td>
+                        <td>✅ 支持</td>
+                        <td>❌ 不支持</td>
+                        <td>❌ 不支持</td>
+                        <td>❌ 不支持</td>
+                    </tr>
+                    <tr>
+                        <td><strong>成本</strong></td>
+                        <td>💰 免费 + API 费用</td>
+                        <td>💰💰 订阅制</td>
+                        <td>💰💰 订阅制</td>
+                        <td>💰 按量付费</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>🚀 5 分钟快速开始</h3>
+            <div class="step">
+                <strong>步骤 1：安装 Node.js</strong>
+                <p>访问 <a href="https://nodejs.org/" target="_blank">nodejs.org</a> 下载并安装 v22+ 版本。</p>
+            </div>
+            
+            <div class="step">
+                <strong>步骤 2：安装 OpenClaw</strong>
+                <pre><code class="language-bash">npm install -g openclaw</code></pre>
+            </div>
+            
+            <div class="step">
+                <strong>步骤 3：运行向导</strong>
+                <pre><code class="language-bash">openclaw onboard --install-daemon</code></pre>
+                <p>按提示选择 AI 模型（推荐 Kimi 或 DeepSeek）并完成配置。</p>
+            </div>
+            
+            <div class="step">
+                <strong>步骤 4：开始对话</strong>
+                <pre><code class="language-bash">openclaw chat</code></pre>
+                <p>或打开浏览器访问 <code>http://localhost:18789</code></p>
+            </div>
+            
+            <div class="success">
+                ✅ 完成！你现在拥有了一个运行在自己设备上的 AI 助手。
+            </div>
+        </div>
+
+        <!-- 文中广告位 1 - 介绍章节后 -->
+        <div class="ad-label">广告</div>
+        <div class="ad-container ad-horizontal">
+            <!-- 替换为 AdSense 代码 -->
+            <!--
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="广告位 1 ID" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            -->
+        </div>
+
+        <!-- 安装 -->
+        <div class="section" id="install">
+            <h2>🚀 安装与配置</h2>
+            
+            <h3>⚙️ 前置条件</h3>
+            <div class="warning">
+                <strong>⚠️ 安装前请确保满足以下所有要求：</strong>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>要求</th>
+                        <th>详细说明</th>
+                        <th>验证命令</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>操作系统</strong></td>
+                        <td>Windows 10+ / macOS 11+ / Linux (Ubuntu 20.04+)</td>
+                        <td><code>ver</code> / <code>uname -a</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Node.js</strong></td>
+                        <td>≥ 22.0.0 (必须)</td>
+                        <td><code>node -v</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>npm</strong></td>
+                        <td>≥ 10.0.0 (随 Node.js 安装)</td>
+                        <td><code>npm -v</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Git</strong></td>
+                        <td>用于版本控制和技能管理</td>
+                        <td><code>git --version</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>内存</strong></td>
+                        <td>至少 2GB 可用内存</td>
+                        <td>任务管理器查看</td>
+                    </tr>
+                    <tr>
+                        <td><strong>磁盘空间</strong></td>
+                        <td>至少 500MB 可用空间</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>网络</strong></td>
+                        <td>需要访问 AI 模型 API（可能需要代理）</td>
+                        <td>确保能访问外网</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>📦 安装方法</h3>
+            
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab(event, 'npm-install')">npm 安装</button>
+                <button class="tab-btn" onclick="switchTab(event, 'source-install')">源码安装</button>
+                <button class="tab-btn" onclick="switchTab(event, 'docker-install')">Docker</button>
+            </div>
+            
+            <div id="npm-install" class="tab-content active">
+                <div class="step">
+                    <strong>步骤 1：安装 Node.js v22+</strong>
+                    <p><strong>Windows：</strong>访问 <a href="https://nodejs.org/" target="_blank">nodejs.org</a> 下载 .msi 安装程序。</p>
+                    <p><strong>macOS：</strong></p>
+                    <pre><code class="language-bash">brew install node@22</code></pre>
+                    <p><strong>Linux：</strong></p>
+                    <pre><code class="language-bash">curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt-get install -y nodejs</code></pre>
+                </div>
+                
+                <div class="step">
+                    <strong>步骤 2：全局安装 OpenClaw</strong>
+                    <pre><code class="language-bash">npm install -g openclaw</code></pre>
+                </div>
+                
+                <div class="step">
+                    <strong>步骤 3：验证安装</strong>
+                    <pre><code class="language-bash">openclaw --version
+# 应输出版本号，如：2026.3.24</code></pre>
+                </div>
+            </div>
+            
+            <div id="source-install" class="tab-content">
+                <div class="step">
+                    <strong>步骤 1：克隆仓库</strong>
+                    <pre><code class="language-bash">git clone https://github.com/openclaw/openclaw.git
+cd openclaw</code></pre>
+                </div>
+                
+                <div class="step">
+                    <strong>步骤 2：安装依赖并链接</strong>
+                    <pre><code class="language-bash">npm install
+npm link</code></pre>
+                </div>
+            </div>
+            
+            <div id="docker-install" class="tab-content">
+                <div class="step">
+                    <strong>步骤 1：拉取镜像</strong>
+                    <pre><code class="language-bash">docker pull openclaw/openclaw:latest</code></pre>
+                </div>
+                
+                <div class="step">
+                    <strong>步骤 2：运行容器</strong>
+                    <pre><code class="language-bash">docker run -d \
+  --name openclaw \
+  -p 18789:18789 \
+  -v ~/.openclaw:/root/.openclaw \
+  -e OPENCLAW_MODEL=moonshot/kimi-k2.5 \
+  openclaw/openclaw:latest</code></pre>
+                </div>
+            </div>
+            
+            <h3>🎯 初始化与配置</h3>
+            
+            <div class="step">
+                <strong>运行交互式向导</strong>
+                <pre><code class="language-bash">openclaw onboard --install-daemon</code></pre>
+                <p>交互式向导将引导你完成以下配置：</p>
+                <ul>
+                    <li><strong>选择 AI 模型提供商</strong> - Kimi、DeepSeek、通义千问、Ollama 等</li>
+                    <li><strong>配置认证信息</strong> - API 密钥或 OAuth 授权</li>
+                    <li><strong>设置工作区目录</strong> - 默认 ~/.openclaw/workspace</li>
+                    <li><strong>配置渠道</strong> - 飞书、Telegram、WhatsApp 等（可选）</li>
+                    <li><strong>安装守护进程</strong> - 开机自启动（可选）</li>
+                </ul>
+                <div class="info">
+                    💡 <strong>提示：</strong> 配置完成后会在 ~/.openclaw/ 目录生成配置文件
+                </div>
+            </div>
+            
+            <h3 id="config">🤖 AI 模型配置</h3>
+            
+            <div class="info">
+                <strong>📁 配置文件位置：</strong><br>
+                • Windows: <code>%USERPROFILE%\.openclaw\openclaw.json</code><br>
+                • macOS/Linux: <code>~/.openclaw/openclaw.json</code>
+            </div>
+            
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab(event, 'cloud-models')">云端模型</button>
+                <button class="tab-btn" onclick="switchTab(event, 'local-models')">本地模型</button>
+                <button class="tab-btn" onclick="switchTab(event, 'config-formats')">配置文件格式</button>
+            </div>
+            
+            <div id="cloud-models" class="tab-content active">
+                <p>云端模型无需本地 GPU，通过 API 调用，适合大多数用户：</p>
+                
+                <details>
+                    <summary>DeepSeek 配置</summary>
+                    <div class="content">
+                        <p><strong>获取 API Key：</strong>访问 <a href="https://platform.deepseek.com/" target="_blank">platform.deepseek.com</a></p>
+                        <pre><code class="language-json">// ~/.openclaw/openclaw.json
+{
+  "auth": {
+    "profiles": {
+      "deepseek:default": {
+        "provider": "deepseek",
+        "mode": "api_key"
+      }
+    }
+  },
+  "models": {
+    "providers": {
+      "deepseek": {
+        "apiKey": "sk-xxxxxxxxxxxxxxxx"
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "deepseek/deepseek-chat"
+      }
+    }
+  }
+}</code></pre>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>Kimi (Moonshot) 配置</summary>
+                    <div class="content">
+                        <p><strong>获取 API Key：</strong>访问 <a href="https://platform.moonshot.cn/" target="_blank">platform.moonshot.cn</a></p>
+                        <pre><code class="language-json">// ~/.openclaw/openclaw.json
+{
+  "auth": {
+    "profiles": {
+      "moonshot:default": {
+        "provider": "moonshot",
+        "mode": "api_key"
+      }
+    }
+  },
+  "models": {
+    "providers": {
+      "moonshot": {
+        "apiKey": "sk-xxxxxxxxxxxxxxxx",
+        "baseUrl": "https://api.moonshot.cn/v1"
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "moonshot/kimi-k2.5"
+      }
+    }
+  }
+}</code></pre>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>通义千问 (Qwen) 配置</summary>
+                    <div class="content">
+                        <p><strong>获取 API Key：</strong>访问 <a href="https://dashscope.console.aliyun.com/" target="_blank">dashscope.console.aliyun.com</a></p>
+                        <pre><code class="language-json">// ~/.openclaw/openclaw.json
+{
+  "auth": {
+    "profiles": {
+      "qwen-portal:default": {
+        "provider": "qwen-portal",
+        "mode": "oauth"
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "qwen-portal/coder-model"
+      }
+    }
+  }
+}</code></pre>
+                        <div class="info">
+                            💡 通义千问支持 OAuth 登录，运行 <code>openclaw auth login qwen-portal</code> 授权
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div id="local-models" class="tab-content">
+                <p>本地模型需要 GPU（建议 8GB+ 显存），数据完全本地，适合隐私敏感场景：</p>
+                
+                <details>
+                    <summary>Ollama + Qwen 配置</summary>
+                    <div class="content">
+                        <p><strong>1. 安装 Ollama：</strong></p>
+                        <pre><code class="language-bash"># macOS / Linux
+curl -fsSL https://ollama.com/install.sh | sh
+
+# Windows: 访问 ollama.com 下载安装程序</code></pre>
+                        
+                        <p><strong>2. 拉取模型：</strong></p>
+                        <pre><code class="language-bash"># Qwen2.5 7B (约需 4GB 显存)
+ollama pull qwen2.5:7b
+
+# Qwen2.5 14B (约需 8GB 显存)
+ollama pull qwen2.5:14b
+
+# 查看已下载模型
+ollama list</code></pre>
+                        
+                        <p><strong>3. 验证 Ollama 运行：</strong></p>
+                        <pre><code class="language-bash">ollama run qwen2.5:7b "你好"</code></pre>
+                        
+                        <p><strong>4. OpenClaw 配置：</strong></p>
+                        <pre><code class="language-json">// ~/.openclaw/openclaw.json
+{
+  "models": {
+    "providers": {
+      "ollama": {
+        "baseUrl": "http://localhost:11434/v1"
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "ollama/qwen2.5:7b"
+      }
+    }
+  }
+}</code></pre>
+                        
+                        <p><strong>5. 启动并测试：</strong></p>
+                        <pre><code class="language-bash">openclaw gateway restart
+openclaw chat</code></pre>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>其他本地模型</summary>
+                    <div class="content">
+                        <p><strong>Llama 3.2：</strong></p>
+                        <pre><code class="language-bash">ollama pull llama3.2:3b
+# 配置：ollama/llama3.2:3b</code></pre>
+                        
+                        <p><strong>Mistral：</strong></p>
+                        <pre><code class="language-bash">ollama pull mistral:7b
+# 配置：ollama/mistral:7b</code></pre>
+                        
+                        <p><strong>Phi-3：</strong></p>
+                        <pre><code class="language-bash">ollama pull phi3:3.8b
+# 配置：ollama/phi3:3.8b</code></pre>
+                    </div>
+                </details>
+            </div>
+            
+            <div id="config-formats" class="tab-content">
+                <p>OpenClaw 支持多种配置文件格式，根据需求选择：</p>
+                
+                <details>
+                    <summary>📄 openclaw.json（主配置文件）</summary>
+                    <div class="content">
+                        <p>这是 OpenClaw 的主要配置文件，位于 <code>~/.openclaw/openclaw.json</code></p>
+                        <pre><code class="language-json">{
+  "meta": {
+    "lastTouchedVersion": "2026.3.24",
+    "lastTouchedAt": "2026-03-31T06:00:00.000Z"
+  },
+  "auth": {
+    "profiles": {
+      "moonshot:default": {
+        "provider": "moonshot",
+        "mode": "api_key"
+      },
+      "qwen-portal:default": {
+        "provider": "qwen-portal",
+        "mode": "oauth"
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "moonshot": {
+        "baseUrl": "https://api.moonshot.cn/v1",
+        "apiKey": "sk-xxx"
+      },
+      "ollama": {
+        "baseUrl": "http://localhost:11434/v1"
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "moonshot/kimi-k2.5",
+        "fallbacks": ["ollama/qwen2.5:7b"]
+      },
+      "workspace": "~/.openclaw/workspace"
+    }
+  },
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "appId": "cli_xxx",
+      "appSecret": "xxx",
+      "connectionMode": "websocket"
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback"
+  }
+}</code></pre>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>🔐 auth-profiles.json（认证配置）</summary>
+                    <div class="content">
+                        <p>集中管理所有 API 密钥和认证信息：</p>
+                        <pre><code class="language-json">// ~/.openclaw/auth-profiles.json
+{
+  "profiles": {
+    "moonshot:default": {
+      "provider": "moonshot",
+      "mode": "api_key",
+      "apiKey": "sk-xxxxxxxxxxxxxxxx",
+      "baseUrl": "https://api.moonshot.cn/v1"
+    },
+    "deepseek:default": {
+      "provider": "deepseek",
+      "mode": "api_key",
+      "apiKey": "sk-xxxxxxxxxxxxxxxx"
+    },
+    "qwen-portal:default": {
+      "provider": "qwen-portal",
+      "mode": "oauth",
+      "token": "oauth_token_xxx"
+    },
+    "ollama:local": {
+      "provider": "ollama",
+      "mode": "none",
+      "baseUrl": "http://localhost:11434/v1"
+    }
+  },
+  "defaultProfile": "moonshot:default"
+}</code></pre>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>⚙️ config.yaml（可选格式）</summary>
+                    <div class="content">
+                        <p>部分场景支持 YAML 格式配置：</p>
+                        <pre><code class="language-yaml"># ~/.openclaw/config.yaml
+auth:
+  profiles:
+    moonshot:default:
+      provider: moonshot
+      mode: api_key
+      apiKey: sk-xxxxxxxxxxxxxxxx
+  
+models:
+  providers:
+    moonshot:
+      baseUrl: https://api.moonshot.cn/v1
+    ollama:
+      baseUrl: http://localhost:11434/v1
+
+agents:
+  defaults:
+    model:
+      primary: moonshot/kimi-k2.5
+      fallbacks:
+        - ollama/qwen2.5:7b
+    workspace: ~/.openclaw/workspace
+
+channels:
+  feishu:
+    enabled: true
+    appId: cli_xxx
+    appSecret: xxx
+    connectionMode: websocket
+
+gateway:
+  port: 18789
+  mode: local
+  bind: loopback</code></pre>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>🔑 .env（环境变量）</summary>
+                    <div class="content">
+                        <p>使用环境变量覆盖配置：</p>
+                        <pre><code class="language-bash"># ~/.openclaw/.env
+OPENCLAW_MODEL_PRIMARY=moonshot/kimi-k2.5
+OPENCLAW_MODEL_FALLBACK=ollama/qwen2.5:7b
+OPENCLAW_MOONSHOT_API_KEY=sk-xxxxxxxxxxxxxxxx
+OPENCLAW_DEEPSEEK_API_KEY=sk-xxxxxxxxxxxxxxxx
+OPENCLAW_FEISHU_APP_ID=cli_xxx
+OPENCLAW_FEISHU_APP_SECRET=xxx
+OPENCLAW_GATEWAY_PORT=18789</code></pre>
+                        <div class="warning">
+                            ⚠️ <strong>安全提醒：</strong>不要将 .env 文件提交到 Git 仓库！
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <h3>✅ 验证运行</h3>
+            
+            <div class="step">
+                <strong>步骤 1：启动网关</strong>
+                <pre><code class="language-bash">openclaw gateway start</code></pre>
+                <p><strong>预期输出：</strong></p>
+                <pre><code class="language-bash">✓ Gateway started
+✓ Listening on http://localhost:18789
+✓ Session: agent:main:main</code></pre>
+            </div>
+            
+            <div class="step">
+                <strong>步骤 2：检查状态</strong>
+                <pre><code class="language-bash">openclaw gateway status</code></pre>
+                <div class="success">
+                    <strong>正常输出示例：</strong><br>
+                    <code>🦞 OpenClaw 2026.3.24</code><br>
+                    <code>🕒 Time: Tuesday, March 31st, 2026 — 14:00 (Asia/Shanghai)</code><br>
+                    <code>🧠 Model: moonshot/kimi-k2.5</code><br>
+                    <code>🪢 Gateway is running on http://localhost:18789</code>
+                </div>
+            </div>
+            
+            <div class="step">
+                <strong>步骤 3：健康检查</strong>
+                <pre><code class="language-bash"># 方法 1: curl 命令
+curl http://localhost:18789/health
+
+# 方法 2: PowerShell
+Invoke-WebRequest http://localhost:18789/health
+
+# 方法 3: 浏览器访问
+# 打开 http://localhost:18789</code></pre>
+                <p><strong>健康检查响应示例：</strong></p>
+                <pre><code class="language-json">{
+  "status": "ok",
+  "gateway": "running",
+  "port": 18789,
+  "model": "moonshot/kimi-k2.5",
+  "uptime": 3600
+}</code></pre>
+            </div>
+            
+            <div class="step">
+                <strong>步骤 4：测试对话</strong>
+                <pre><code class="language-bash"># 命令行对话
+openclaw chat
+
+# 输入：你好
+# 应该收到 AI 回复</code></pre>
+                <p><strong>或使用 Web 界面：</strong></p>
+                <ul>
+                    <li>打开浏览器访问 <code>http://localhost:18789</code></li>
+                    <li>在聊天框输入消息</li>
+                    <li>查看 AI 回复</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <strong>步骤 5：查看日志（故障排查）</strong>
+                <pre><code class="language-bash"># 实时查看日志
+openclaw gateway logs --follow
+
+# 查看最近 50 行
+openclaw gateway logs --lines 50
+
+# 导出日志文件
+openclaw gateway logs --output openclaw.log</code></pre>
+            </div>
+            
+            <div class="warning">
+                <strong>⚠️ 常见问题排查：</strong><br>
+                • <strong>端口被占用：</strong>修改配置中的 <code>gateway.port</code><br>
+                • <strong>模型无法连接：</strong>检查 API Key 或网络连接<br>
+                • <strong>Ollama 无法访问：</strong>确认 <code>ollama serve</code> 正在运行
+            </div>
+        </div>
+
+        
+        <!-- 技能扩展 -->
+        <div class="section" id="skills">
+            <h2>🧩 技能扩展</h2>
+            <p>OpenClaw 支持通过 ClawHub 安装额外技能，扩展 AI 助手的能力边界。</p>
+            
+            <div class="info">
+                <strong>🌐 技能市场：</strong><a href="https://clawhub.ai" target="_blank">clawhub.ai</a> - 发现和安装社区技能
+            </div>
+            
+            <h3>📦 热门技能推荐</h3>
+            
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab(event, 'skill-files')">文件管理</button>
+                <button class="tab-btn" onclick="switchTab(event, 'skill-web')">网页浏览</button>
+                <button class="tab-btn" onclick="switchTab(event, 'skill-calendar')">日历/邮件</button>
+                <button class="tab-btn" onclick="switchTab(event, 'skill-custom')">自定义技能</button>
+            </div>
+            
+            <div id="skill-files" class="tab-content active">
+                <h4>📁 文件管理技能</h4>
+                <p>让 AI 助手可以读写、整理、搜索你的文件。</p>
+                <ul>
+                    <li><strong>功能：</strong>文件搜索、批量重命名、内容提取、格式转换</li>
+                    <li><strong>适用场景：</strong>文档整理、代码管理、数据分析</li>
+                </ul>
+                <pre><code class="language-bash"># 安装文件管理技能
+openclaw skills install file-manager
+
+# 使用示例
+# "帮我找出工作区所有 .md 文件"
+# "把这份 PDF 转换成 Markdown"</code></pre>
+            </div>
+            
+            <div id="skill-web" class="tab-content">
+                <h4>🌐 网页浏览技能</h4>
+                <p>让 AI 助手可以访问网页、搜索信息、抓取内容。</p>
+                <ul>
+                    <li><strong>功能：</strong>网页抓取、搜索引擎、内容摘要、链接追踪</li>
+                    <li><strong>适用场景：</strong>信息收集、竞品分析、新闻聚合</li>
+                </ul>
+                <pre><code class="language-bash"># 安装网页浏览技能
+openclaw skills install web-browse
+
+# 使用示例
+# "搜索最新的 AI 新闻"
+# "帮我总结这个网页的内容：https://example.com"</code></pre>
+            </div>
+            
+            <div id="skill-calendar" class="tab-content">
+                <h4>📅 日历/邮件技能</h4>
+                <p>连接你的日历和邮箱，实现智能日程管理和邮件处理。</p>
+                <ul>
+                    <li><strong>功能：</strong>日程提醒、会议安排、邮件分类、自动回复</li>
+                    <li><strong>适用场景：</strong>时间管理、邮件整理、会议协调</li>
+                </ul>
+                <pre><code class="language-bash"># 安装日历技能
+openclaw skills install calendar
+
+# 安装邮件技能
+openclaw skills install email
+
+# 使用示例
+# "今天下午有什么会议？"
+# "帮我回复这封邮件，说我会参加"</code></pre>
+            </div>
+            
+            <div id="skill-custom" class="tab-content">
+                <h4>🛠️ 自定义技能</h4>
+                <p>创建属于你自己的技能，满足特定需求。</p>
+                <ul>
+                    <li><strong>技能结构：</strong>SKILL.md + 脚本/引用文件</li>
+                    <li><strong>支持语言：</strong>JavaScript、Python、Shell 等</li>
+                    <li><strong>发布流程：</strong>创建 → 测试 → 提交到 ClawHub</li>
+                </ul>
+                <pre><code class="language-bash"># 创建新技能
+openclaw skills create my-skill
+
+# 技能目录结构
+my-skill/
+├── SKILL.md        # 技能描述和触发条件
+├── scripts/        # 执行脚本
+├── references/     # 参考文件
+└── package.json    # 技能元数据
+
+# 本地测试
+openclaw skills link ./my-skill
+
+# 发布到 ClawHub
+openclaw skills publish</code></pre>
+                <div class="info">
+                    📚 <strong>技能开发文档：</strong><a href="https://docs.openclaw.ai/skills" target="_blank">docs.openclaw.ai/skills</a>
+                </div>
+            </div>
+            
+            <h3>🔧 技能管理命令</h3>
+            <table>
+                <tr>
+                    <th>命令</th>
+                    <th>说明</th>
+                </tr>
+                <tr>
+                    <td><code>openclaw skills list</code></td>
+                    <td>列出已安装的技能</td>
+                </tr>
+                <tr>
+                    <td><code>openclaw skills install &lt;name&gt;</code></td>
+                    <td>安装新技能</td>
+                </tr>
+                <tr>
+                    <td><code>openclaw skills update &lt;name&gt;</code></td>
+                    <td>更新技能</td>
+                </tr>
+                <tr>
+                    <td><code>openclaw skills remove &lt;name&gt;</code></td>
+                    <td>卸载技能</td>
+                </tr>
+                <tr>
+                    <td><code>openclaw skills search &lt;query&gt;</code></td>
+                    <td>搜索 ClawHub 上的技能</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 文中广告位 2 - 技能章节后 -->
+        <div class="ad-label">广告</div>
+        <div class="ad-container ad-horizontal">
+            <!-- 替换为 AdSense 代码 -->
+            <!--
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="广告位 2 ID" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            -->
+        </div>
+
+<!-- 飞书接入 -->
+        <div class="section" id="feishu">
+            <h2>📱 接入飞书</h2>
+            
+            <div class="warning">
+                <strong>⚠️ 版本要求：</strong>OpenClaw v2026.2.26+ | 需要飞书企业账号和开放平台管理员权限
+            </div>
+            
+            <h3>📋 前置条件</h3>
+            <ul>
+                <li>OpenClaw 版本 ≥ v2026.2.26</li>
+                <li>飞书企业账号（个人版功能受限）</li>
+                <li>飞书开放平台管理员权限</li>
+                <li>已完成的 OpenClaw 基础配置</li>
+            </ul>
+            
+            <h3>🔧 飞书应用创建</h3>
+            
+            <div class="step">
+                <strong>步骤 1：访问飞书开放平台</strong>
+                <p>前往 <a href="https://open.feishu.cn/app" target="_blank">open.feishu.cn/app</a> 并登录企业账号。</p>
+            </div>
+            
+            <div class="step">
+                <strong>步骤 2：创建企业自建应用</strong>
+                <ol>
+                    <li>点击「创建企业自建应用」</li>
+                    <li>选择「机器人」类型</li>
+                    <li>填写应用名称（如：OpenClaw Assistant）</li>
+                    <li>上传应用图标（可选）</li>
+                    <li>点击「创建」</li>
+                </ol>
+            </div>
+            
+            <div class="step">
+                <strong>步骤 3：获取凭证</strong>
+                <p>在应用管理页面：</p>
+                <ul>
+                    <li><strong>App ID：</strong> 显示为 <code>cli_xxxxxxxxxxxxx</code> 格式</li>
+                    <li><strong>App Secret：</strong> 点击「查看」并验证后获取</li>
+                </ul>
+                <div class="info">
+                    💡 <strong>位置：</strong>应用管理 → 凭证与基础信息 → App ID / App Secret
+                </div>
+            </div>
+            
+            <h3>🔐 应用权限配置</h3>
+            <p>在飞书开放平台「权限管理」页面，添加以下权限：</p>
+            
+            <div class="config-box">
+                <h5>必需权限列表</h5>
+                <span class="permission-tag">im:message</span>
+                <span class="permission-tag">im:chat</span>
+                <span class="permission-tag">im:resource</span>
+                <span class="permission-tag">contact:contact:readonly</span>
+                <span class="permission-tag">docs:document.content:read</span>
+                <span class="permission-tag">wiki:wiki:readonly</span>
+            </div>
+            
+            <details>
+                <summary>📋 权限说明</summary>
+                <div class="content">
+                    <table>
+                        <tr>
+                            <td><code>im:message</code></td>
+                            <td>发送和接收消息（必需）</td>
+                        </tr>
+                        <tr>
+                            <td><code>im:chat</code></td>
+                            <td>管理会话信息</td>
+                        </tr>
+                        <tr>
+                            <td><code>im:resource</code></td>
+                            <td>访问消息中的资源（图片、文件）</td>
+                        </tr>
+                        <tr>
+                            <td><code>contact:contact:readonly</code></td>
+                            <td>读取联系人信息（可选）</td>
+                        </tr>
+                        <tr>
+                            <td><code>docs:document.content:read</code></td>
+                            <td>读取飞书文档内容</td>
+                        </tr>
+                        <tr>
+                            <td><code>wiki:wiki:readonly</code></td>
+                            <td>读取知识库内容</td>
+                        </tr>
+                    </table>
+                </div>
+            </details>
+            
+            <h3>📡 事件订阅</h3>
+            
+            <div class="warning">
+                <strong>⚠️ 重要：</strong>必须选择 <strong>WebSocket 模式</strong>（长连接），无需配置回调 URL！
+            </div>
+            
+            <div class="step">
+                <strong>配置步骤</strong>
+                <ol>
+                    <li>在开放平台开启「事件订阅」</li>
+                    <li>选择 <strong>WebSocket</strong> 连接模式</li>
+                    <li>订阅事件：<code>im.message.receive_v1</code></li>
+                    <li>配置加密密钥（记录保存，用于验证消息）</li>
+                    <li>保存配置</li>
+                </ol>
+            </div>
+            
+            <h3>⚙️ OpenClaw 端配置</h3>
+            
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab(event, 'cli-config')">CLI 配置</button>
+                <button class="tab-btn" onclick="switchTab(event, 'file-config')">配置文件</button>
+                <button class="tab-btn" onclick="switchTab(event, 'env-config')">环境变量</button>
+            </div>
+            
+            <div id="cli-config" class="tab-content active">
+                <div class="step">
+                    <strong>使用交互式 CLI</strong>
+                    <pre><code class="language-bash">openclaw channels add feishu</code></pre>
+                    <p>按提示输入：</p>
+                    <ul>
+                        <li>App ID</li>
+                        <li>App Secret</li>
+                        <li>连接模式（选择 WebSocket）</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="file-config" class="tab-content">
+                <div class="step">
+                    <strong>编辑配置文件</strong>
+                    <pre><code class="language-json">// ~/.openclaw/openclaw.json
+{
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "appId": "cli_a94d372767385bb7",
+      "appSecret": "你的 App Secret",
+      "connectionMode": "websocket",
+      "domain": "feishu",
+      "groupPolicy": "open",
+      "dmPolicy": "open",
+      "allowFrom": ["*"]
+    }
+  },
+  "plugins": {
+    "entries": {
+      "feishu": {
+        "enabled": true
+      }
+    }
+  }
+}</code></pre>
+                </div>
+            </div>
+            
+            <div id="env-config" class="tab-content">
+                <div class="step">
+                    <strong>使用环境变量</strong>
+                    <pre><code class="language-bash"># ~/.openclaw/.env
+OPENCLAW_FEISHU_ENABLED=true
+OPENCLAW_FEISHU_APP_ID=cli_a94d372767385bb7
+OPENCLAW_FEISHU_APP_SECRET=你的 App Secret
+OPENCLAW_FEISHU_CONNECTION_MODE=websocket</code></pre>
+                </div>
+            </div>            
+            <h3>🚀 发布与测试</h3>
+            
+            <div class="step">
+                <strong>步骤 1：创建版本</strong>
+                <ol>
+                    <li>在飞书开放平台点击「版本管理与发布」</li>
+                    <li>点击「创建新版本」</li>
+                    <li>填写版本说明</li>
+                    <li>提交审核（通常自动通过）</li>
+                </ol>
+            </div>
+            
+            <div class="step">
+                <strong>步骤 2：发布应用</strong>
+                <pre><code class="language-bash">openclaw gateway restart</code></pre>
+            </div>
+            
+            <div class="step">
+                <strong>步骤 3：添加到飞书</strong>
+                <ol>
+                    <li>在飞书客户端左侧栏点击「+」</li>
+                    <li>搜索你的应用名称</li>
+                    <li>点击「添加」</li>
+                </ol>
+            </div>
+            
+            <div class="step">
+                <strong>步骤 4：测试机器人</strong>
+                <ul>
+                    <li><strong>私聊测试：</strong>发送「你好」，应收到回复</li>
+                    <li><strong>群聊测试：</strong>在群中 <code>@OpenClaw</code> 发送消息</li>
+                    <li><strong>命令测试：</strong>发送 <code>/help</code> 查看可用命令</li>
+                </ul>
+            </div>
+            
+            <div class="success">
+                ✅ 如果收到回复，说明接入成功！
+            </div>
+            
+            <h3>🔗 配对流程（可选）</h3>
+            <p>如需将飞书与 OpenClaw 深度集成，可使用配对功能：</p>
+            <pre><code class="language-bash">openclaw pair feishu</code></pre>
+            <p>按提示完成 OAuth 授权流程。</p>
+        </div>
+
+        <!-- 文中广告位 2 -->
+        <div class="section">
+            <div class="ad-container"></div>
+        </div>
+
+        <!-- 卸载 -->
+        <div class="section" id="uninstall">
+            <h2>🗑️ 删除/卸载</h2>
+            
+            <div class="danger">
+                <strong>⚠️ 警告：</strong> 卸载将删除所有配置、记忆和聊天记录！请提前备份重要数据。
+            </div>
+            
+            <h3>📌 标准卸载流程（CLI 可用时）</h3>
+            
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab(event, 'interactive-uninstall')">交互式卸载</button>
+                <button class="tab-btn" onclick="switchTab(event, 'auto-uninstall')">自动卸载</button>
+            </div>
+            
+            <div id="interactive-uninstall" class="tab-content active">
+                <div class="step">
+                    <strong>推荐：使用官方卸载命令</strong>
+                    <pre><code class="language-bash">openclaw uninstall</code></pre>
+                    <p>按提示确认卸载选项。</p>
+                </div>
+            </div>
+            
+            <div id="auto-uninstall" class="tab-content">
+                <div class="step">
+                    <strong>自动化卸载（无提示）</strong>
+                    <pre><code class="language-bash">openclaw uninstall --all --yes --non-interactive</code></pre>
+                    <div class="danger">
+                        ⚠️ 此命令会删除所有内容，不会二次确认！
+                    </div>
+                </div>
+            </div>
+            
+            <h3>🔧 手动卸载步骤（CLI 不可用时）</h3>
+            
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab(event, 'win-uninstall')">Windows</button>
+                <button class="tab-btn" onclick="switchTab(event, 'mac-uninstall')">macOS</button>
+                <button class="tab-btn" onclick="switchTab(event, 'linux-uninstall')">Linux</button>
+            </div>
+            
+            <div id="win-uninstall" class="tab-content active">
+                <div class="step">
+                    <strong>步骤 1：停止网关服务</strong>
+                    <pre><code class="language-powershell">openclaw gateway stop</code></pre>
+                </div>
+                
+                <div class="step">
+                    <strong>步骤 2：删除计划任务</strong>
+                    <pre><code class="language-powershell">schtasks /delete /tn "OpenClaw Gateway" /f</code></pre>
+                </div>
+                
+                <div class="step">
+                    <strong>步骤 3：删除服务文件</strong>
+                    <pre><code class="language-powershell">del "%APPDATA%\openclaw\gateway.cmd"
+rmdir /s "%USERPROFILE%\.openclaw"
+rmdir /s "%APPDATA%\openclaw"</code></pre>
+                </div>
+                
+                <div class="step">
+                    <strong>步骤 4：卸载 npm 包</strong>
+                    <pre><code class="language-bash">npm uninstall -g openclaw</code></pre>
+                </div>
+            </div>
+            
+            <div id="mac-uninstall" class="tab-content">
+                <div class="step">
+                    <strong>步骤 1：停止服务</strong>
+                    <pre><code class="language-bash">openclaw gateway stop</code></pre>
+                </div>
+                
+                <div class="step">
+                    <strong>步骤 2：移除 launchd 服务</strong>
+                    <pre><code class="language-bash">launchctl bootout gui/$(id -u)/~/Library/LaunchAgents/com.openclaw.gateway.plist
+rm ~/Library/LaunchAgents/com.openclaw.gateway.plist</code></pre>
+                </div>
+                
+                <div class="step">
+                    <strong>步骤 3：删除配置目录</strong>
+                    <pre><code class="language-bash">rm -rf ~/.openclaw
+rm -rf ~/Library/Application\ Support/openclaw</code></pre>
+                </div>
+                
+                <div class="step">
+                    <strong>步骤 4：卸载 npm 包</strong>
+                    <pre><code class="language-bash">npm uninstall -g openclaw</code></pre>
+                </div>
+            </div>
+            
+            <div id="linux-uninstall" class="tab-content">
+                <div class="step">
+                    <strong>步骤 1：停止 systemd 服务</strong>
+                    <pre><code class="language-bash">systemctl --user stop openclaw-gateway
+systemctl --user disable openclaw-gateway</code></pre>
+                </div>
+                
+                <div class="step">
+                    <strong>步骤 2：删除服务单元</strong>
+                    <pre><code class="language-bash">rm ~/.config/systemd/user/openclaw-gateway.service
+systemctl --user daemon-reload</code></pre>
+                </div>
+                
+                <div class="step">
+                    <strong>步骤 3：删除配置目录</strong>
+                    <pre><code class="language-bash">rm -rf ~/.openclaw
+rm -rf ~/.config/openclaw</code></pre>
+                </div>
+                
+                <div class="step">
+                    <strong>步骤 4：卸载 npm 包</strong>
+                    <pre><code class="language-bash">npm uninstall -g openclaw</code></pre>
+                </div>
+            </div>
+            
+            <h3>🧹 彻底清理</h3>
+            
+            <div class="step">
+                <strong>删除工作区目录</strong>
+                <pre><code class="language-bash">rm -rf ~/.openclaw/workspace</code></pre>
+            </div>
+            
+            <div class="step">
+                <strong>清理旧版本残留</strong>
+                <pre><code class="language-bash">rm -rf ~/.clawdbot
+rm -rf ~/.moltbot
+rm -rf ~/.config/claw</code></pre>
+            </div>
+            
+            <h3>🔒 安全提醒</h3>
+            <div class="danger">
+                <strong>⚠️ 重要：</strong> 卸载后务必前往各 AI 模型平台轮换或撤销曾使用的 API Key！
+            </div>
+            
+            <ul>
+                <li><strong>DeepSeek：</strong> <a href="https://platform.deepseek.com/" target="_blank">platform.deepseek.com</a> → API Keys → 删除</li>
+                <li><strong>Kimi (Moonshot)：</strong> <a href="https://platform.moonshot.cn/" target="_blank">platform.moonshot.cn</a> → 密钥管理 → 撤销</li>
+                <li><strong>通义千问：</strong> <a href="https://dashscope.console.aliyun.com/" target="_blank">dashscope.console.aliyun.com</a> → API Key 管理</li>
+                <li><strong>OpenAI：</strong> <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com/api-keys</a> → 删除密钥</li>
+            </ul>
+        </div>
+
+        <!-- 性能优化 -->
+        <div class="section" id="performance">
+            <h2>⚡ 性能优化指南</h2>
+            
+            <h3>📊 模型选择建议</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>使用场景</th>
+                        <th>推荐模型</th>
+                        <th>显存需求</th>
+                        <th>响应速度</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>日常对话/简单任务</td>
+                        <td>Qwen2.5 7B / Llama 3.2 3B</td>
+                        <td>4-6 GB</td>
+                        <td>⭐⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>代码生成/复杂推理</td>
+                        <td>Qwen2.5 14B / DeepSeek Coder</td>
+                        <td>8-12 GB</td>
+                        <td>⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>专业写作/分析</td>
+                        <td>Kimi / Claude / GPT-4</td>
+                        <td>N/A (云端)</td>
+                        <td>⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>批量处理/后台任务</td>
+                        <td>Phi-3 / TinyLlama</td>
+                        <td>2-4 GB</td>
+                        <td>⭐⭐⭐⭐⭐</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>🔧 配置优化</h3>
+            
+            <details>
+                <summary>减少内存占用</summary>
+                <div class="content">
+                    <pre><code class="language-json">// ~/.openclaw/openclaw.json
+{
+  "agents": {
+    "defaults": {
+      "model": {
+        "contextLimit": 4096  // 限制上下文长度，默认 8192
+      }
+    }
+  },
+  "gateway": {
+    "maxConcurrentSessions": 3  // 限制并发会话数
+  }
+}</code></pre>
+                </div>
+            </details>
+            
+            <details>
+                <summary>加快响应速度</summary>
+                <div class="content">
+                    <ul>
+                        <li><strong>使用流式响应：</strong>默认开启，无需配置</li>
+                        <li><strong>降低 thinking 级别：</strong><code>/thinking off</code></li>
+                        <li><strong>使用本地模型：</strong>避免网络延迟</li>
+                        <li><strong>预热模型：</strong>启动后先发送一条简单消息</li>
+                    </ul>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ollama 优化</summary>
+                <div class="content">
+                    <pre><code class="language-bash"># 设置 Ollama 并发请求数
+OLLAMA_MAX_LOADED_MODELS=2 ollama serve
+
+# 使用量化模型减少显存
+ollama pull qwen2.5:7b-q4_0
+
+# 预加载常用模型
+ollama run qwen2.5:7b "" &</code></pre>
+                </div>
+            </details>
+            
+            <h3>🧹 定期维护</h3>
+            <ul>
+                <li><strong>清理旧会话：</strong><code>openclaw sessions cleanup --older-than 30d</code></li>
+                <li><strong>更新依赖：</strong><code>npm update -g openclaw</code></li>
+                <li><strong>清理缓存：</strong><code>openclaw cache clear</code></li>
+                <li><strong>检查日志大小：</strong>日志文件超过 100MB 时归档</li>
+            </ul>
+        </div>
+
+        <!-- 常见问题 -->
+        <div class="section" id="faq">
+            <h2>❓ 常见问题</h2>
+            
+            <details>
+                <summary>安装后 openclaw 命令找不到？</summary>
+                <div class="content">
+                    <p><strong>原因：</strong>npm 全局目录不在 PATH 中。</p>
+                    <pre><code class="language-bash"># Windows: 将 npm prefix 目录添加到系统 PATH
+# macOS / Linux
+export PATH=$(npm config get prefix)/bin:$PATH</code></pre>
+                    <p><strong>Windows 永久添加：</strong></p>
+                    <ol>
+                        <li>右键「此电脑」→ 属性 → 高级系统设置</li>
+                        <li>点击「环境变量」</li>
+                        <li>在「系统变量」中找到 Path，点击编辑</li>
+                        <li>新建，添加 <code>C:\Users\你的用户名\AppData\Roaming\npm</code></li>
+                        <li>确定保存，重启终端</li>
+                    </ol>
+                </div>
+            </details>
+            
+            <details>
+                <summary>飞书机器人不回复消息？</summary>
+                <div class="content">
+                    <p><strong>检查清单：</strong></p>
+                    <ol>
+                        <li>确认应用已发布到飞书</li>
+                        <li>检查事件订阅是否开启 WebSocket</li>
+                        <li>确认 im.message.receive_v1 事件已订阅</li>
+                        <li>检查权限是否已授予</li>
+                        <li>查看 OpenClaw 日志：openclaw gateway logs</li>
+                    </ol>
+                </div>
+            </details>
+            
+            <details>
+                <summary>如何切换 AI 模型？</summary>
+                <div class="content">
+                    <pre><code class="language-bash">/model kimi
+/model qwen
+/model deepseek</code></pre>
+                </div>
+            </details>
+            
+            <details>
+                <summary>工作区在哪里？</summary>
+                <div class="content">
+                    <ul>
+                        <li><strong>Windows：</strong> C:\Users\你的用户名\.openclaw\workspace</li>
+                        <li><strong>macOS：</strong> ~/.openclaw/workspace</li>
+                        <li><strong>Linux：</strong> ~/.openclaw/workspace</li>
+                    </ul>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Gateway 启动失败，端口被占用？</summary>
+                <div class="content">
+                    <p><strong>方法 1：查找并关闭占用端口的进程</strong></p>
+                    <pre><code class="language-bash"># Windows
+netstat -ano | findstr :18789
+taskkill /F /PID &lt;进程 ID&gt;
+
+# macOS / Linux
+lsof -i :18789
+kill -9 &lt;进程 ID&gt;</code></pre>
+                    
+                    <p><strong>方法 2：修改 OpenClaw 端口</strong></p>
+                    <pre><code class="language-bash"># 编辑配置文件
+# ~/.openclaw/openclaw.json
+{
+  "gateway": {
+    "port": 18790  // 改为其他端口
+  }
+}</code></pre>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ollama 连接失败？</summary>
+                <div class="content">
+                    <p><strong>检查步骤：</strong></p>
+                    <ol>
+                        <li>确认 Ollama 服务正在运行：<code>ollama serve</code></li>
+                        <li>测试 Ollama API：<code>curl http://localhost:11434/api/tags</code></li>
+                        <li>确认模型已下载：<code>ollama list</code></li>
+                        <li>检查防火墙是否阻止 11434 端口</li>
+                        <li>Mac 用户可能需要允许 Ollama 通过防火墙</li>
+                    </ol>
+                </div>
+            </details>
+            
+            <details>
+                <summary>API Key 无效或过期？</summary>
+                <div class="content">
+                    <p><strong>解决方法：</strong></p>
+                    <ol>
+                        <li>登录对应模型平台确认账户状态</li>
+                        <li>检查 API Key 是否正确复制（无多余空格）</li>
+                        <li>确认账户有足够余额/额度</li>
+                        <li>如仍无效，重新生成 API Key 并更新配置</li>
+                        <li>检查是否需要配置代理访问</li>
+                    </ol>
+                </div>
+            </details>
+            
+            <details>
+                <summary>如何查看和导出聊天记录？</summary>
+                <div class="content">
+                    <p><strong>查看会话列表：</strong></p>
+                    <pre><code class="language-bash">openclaw sessions list</code></pre>
+                    
+                    <p><strong>查看特定会话历史：</strong></p>
+                    <pre><code class="language-bash">openclaw sessions history --session &lt;session-key&gt;</code></pre>
+                    
+                    <p><strong>导出为文件：</strong></p>
+                    <pre><code class="language-bash">openclaw sessions export --format json --output chat-history.json</code></pre>
+                </div>
+            </details>
+            
+            <details>
+                <summary>内存占用过高怎么办？</summary>
+                <div class="content">
+                    <p><strong>优化建议：</strong></p>
+                    <ul>
+                        <li>使用较小的模型（如 7B 而非 14B）</li>
+                        <li>定期清理旧会话：<code>openclaw sessions cleanup</code></li>
+                        <li>减少同时运行的子代理数量</li>
+                        <li>使用 Ollama 时调整上下文长度</li>
+                        <li>考虑增加系统内存或使用 swap</li>
+                    </ul>
+                </div>
+            </details>
+            
+            <h3>🔒 安全最佳实践</h3>
+            
+            <div class="info">
+                <strong>保护你的 OpenClaw 实例：</strong>
+            </div>
+            
+            <ul>
+                <li><strong>定期轮换 API Key</strong> - 每 3-6 个月更新一次</li>
+                <li><strong>不要提交敏感配置到 Git</strong> - 将 <code>.openclaw/</code> 加入 <code>.gitignore</code></li>
+                <li><strong>限制 Gateway 访问</strong> - 生产环境设置 <code>gateway.bind: "loopback"</code></li>
+                <li><strong>使用环境变量存储密钥</strong> - 避免明文存储在配置文件中</li>
+                <li><strong>定期更新 OpenClaw</strong> - <code>npm update -g openclaw</code></li>
+                <li><strong>审查已安装技能</strong> - 只从可信来源安装技能</li>
+                <li><strong>备份重要数据</strong> - 定期备份 <code>~/.openclaw/workspace</code></li>
+                <li><strong>监控日志</strong> - 定期检查异常活动</li>
+            </ul>
+            
+            <h3>📞 获取帮助</h3>
+            <p>如果以上方法无法解决问题：</p>
+            <ul>
+                <li>查看官方文档：<a href="https://docs.openclaw.ai" target="_blank">docs.openclaw.ai</a></li>
+                <li>搜索 GitHub Issues：<a href="https://github.com/openclaw/openclaw/issues" target="_blank">github.com/openclaw/openclaw/issues</a></li>
+                <li>加入 Discord 社区：<a href="https://discord.com/invite/clawd" target="_blank">discord.gg/clawd</a></li>
+                <li>提交新问题（附日志）：<code>openclaw gateway logs --output issue.log</code></li>
+            </ul>
+        </div>
+
+        <!-- 文中广告位 3 - FAQ 章节后 -->
+        <div class="ad-label">广告</div>
+        <div class="ad-container ad-horizontal">
+            <!-- 替换为 AdSense 代码 -->
+            <!--
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="广告位 3 ID" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            -->
+        </div>
+
+        <!-- 更多资源 -->
+        <div class="section" id="resources">
+            <h2>🔗 资源与社区</h2>
+            
+            <h3>📖 官方资源</h3>
+            <ul>
+                <li><strong>官方文档：</strong> <a href="https://docs.openclaw.ai" target="_blank">docs.openclaw.ai</a> - 完整使用指南</li>
+                <li><strong>GitHub 仓库：</strong> <a href="https://github.com/openclaw/openclaw" target="_blank">github.com/openclaw/openclaw</a> - 源码与 Issue 追踪</li>
+                <li><strong>技能市场：</strong> <a href="https://clawhub.ai" target="_blank">clawhub.ai</a> - 发现和分享技能</li>
+                <li><strong>更新日志：</strong> <a href="https://github.com/openclaw/openclaw/releases" target="_blank">GitHub Releases</a> - 版本更新记录</li>
+            </ul>
+            
+            <h3>💬 社区交流</h3>
+            <ul>
+                <li><strong>Discord 社区：</strong> <a href="https://discord.com/invite/clawd" target="_blank">discord.gg/clawd</a> - 实时交流与答疑</li>
+                <li><strong>Telegram 群组：</strong> <a href="https://t.me/openclaw" target="_blank">t.me/openclaw</a> - 中文讨论</li>
+                <li><strong>Twitter/X：</strong> <a href="https://twitter.com/openclaw" target="_blank">@openclaw</a> - 官方动态</li>
+            </ul>
+            
+            <h3>📚 相关教程</h3>
+            <ul>
+                <li><a href="https://docs.openclaw.ai/getting-started" target="_blank">新手入门指南</a> - 从零开始使用 OpenClaw</li>
+                <li><a href="https://docs.openclaw.ai/skills" target="_blank">技能开发教程</a> - 创建自定义技能</li>
+                <li><a href="https://docs.openclaw.ai/channels/feishu" target="_blank">飞书接入详解</a> - 深度配置指南</li>
+                <li><a href="https://docs.openclaw.ai/automation" target="_blank">自动化工作流</a> - 定时任务与自动化</li>
+            </ul>
+            
+            <h3>🤝 贡献与支持</h3>
+            <ul>
+                <li><strong>提交 Bug：</strong> <a href="https://github.com/openclaw/openclaw/issues" target="_blank">GitHub Issues</a></li>
+                <li><strong>功能建议：</strong> <a href="https://github.com/openclaw/openclaw/discussions" target="_blank">GitHub Discussions</a></li>
+                <li><strong>提交技能：</strong> <a href="https://clawhub.ai/submit" target="_blank">ClawHub 提交</a></li>
+                <li><strong>赞助项目：</strong> <a href="https://github.com/sponsors/openclaw" target="_blank">GitHub Sponsors</a></li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>Generated by OpenClaw 🦞</p>
+            <p>适用版本：OpenClaw 2026.3.24+ | 最后更新：2026 年 4 月 2 日</p>
+            <p style="margin-top: 15px; font-size: 0.85em; opacity: 0.8;">
+                <strong>⚠️ 安全提示：</strong>请妥善保管 API Key、App Secret 等敏感信息，不要泄露给他人。
+            </p>
+            <p style="margin-top: 10px; font-size: 0.8em; opacity: 0.7;">
+                <strong>免责声明：</strong>本教程仅供参考，请根据自身情况谨慎操作。因操作不当造成的损失，作者不承担责任。
+            </p>
+            <p style="margin-top: 15px; font-size: 0.85em;">
+                <a href="openclaw-intro.html#intro">🏠 首页</a> | 
+                <a href="about.html">ℹ️ 关于我们</a> | 
+                <a href="privacy-policy.html">🔒 隐私政策</a> | 
+                <a href="#intro">↑ 返回顶部</a>
+            </p>
+        </footer>
+    </div>
+
+    <a href="#intro" class="back-to-top" title="返回顶部">↑</a>
+
+    <script>
+        // 标签页切换
+        function switchTab(event, tabId) {
+            const section = event.target.closest('.section') || document;
+            section.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            section.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+        
+        // 主题切换
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.querySelector('.theme-toggle');
+            const isDark = document.body.classList.contains('dark-mode');
+            btn.textContent = isDark ? '☀️' : '🌙';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+        
+        // 加载保存的主题
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.theme-toggle').textContent = '☀️';
+            }
+        })();
+        
+        // 目录切换
+        function toggleTOC() {
+            const sidebar = document.getElementById('tocSidebar');
+            sidebar.classList.toggle('show');
+        }
+        
+        // 点击外部关闭目录
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('tocSidebar');
+            const toggle = document.querySelector('.toc-toggle');
+            if (!sidebar.contains(event.target) && !toggle.contains(event.target)) {
+                sidebar.classList.remove('show');
+            }
+        });
+        
+        // 代码块复制按钮
+        document.querySelectorAll('pre').forEach(pre => {
+            const btn = document.createElement('button');
+            btn.className = 'copy-btn';
+            btn.textContent = '复制';
+            btn.onclick = () => {
+                const code = pre.querySelector('code').textContent;
+                navigator.clipboard.writeText(code).then(() => {
+                    btn.textContent = '已复制!';
+                    btn.classList.add('copied');
+                    setTimeout(() => { btn.textContent = '复制'; btn.classList.remove('copied'); }, 2000);
+                });
+            };
+            pre.appendChild(btn);
+        });
+        
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // 移动端关闭目录
+                    document.getElementById('tocSidebar').classList.remove('show');
+                }
+            });
+        });
+        
+        // 滚动时高亮当前目录项
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section[id]');
+            const navLinks = document.querySelectorAll('.toc-sidebar a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.color = '#667eea';
+                    link.style.fontWeight = '600';
+                }
+            });
+        });
+        
+        // 搜索功能
+        let searchTimeout;
+        function searchContent(query) {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                if (!query || query.length < 2) {
+                    document.querySelectorAll('.section').forEach(section => {
+                        section.style.display = '';
+                    });
+                    return;
+                }
+                
+                const q = query.toLowerCase();
+                document.querySelectorAll('.section').forEach(section => {
+                    const text = section.textContent.toLowerCase();
+                    if (text.includes(q)) {
+                        section.style.display = '';
+                        // 高亮匹配的关键词
+                        section.style.boxShadow = '0 10px 40px rgba(102, 126, 234, 0.3)';
+                    } else {
+                        section.style.display = 'none';
+                        section.style.boxShadow = '';
+                    }
+                });
+            }, 300);
+        }
+        
+        // ESC 键清除搜索
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('searchBox').value = '';
+                document.getElementById('searchBox').blur();
+                document.querySelectorAll('.section').forEach(section => {
+                    section.style.display = '';
+                    section.style.boxShadow = '';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
