@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隐私政策 - OpenClaw</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="OpenClaw 隐私政策 - 了解我们如何收集、使用和保护您的个人信息">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Google AdSense 验证代码（替换为你的实际代码） -->
+    <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX">
+    
+    <!-- Google Analytics（如有） -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script> -->
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #6c757d;
+            font-size: 1.1em;
+        }
+        
+        .header .update-date {
+            background: #f8f9fa;
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 15px;
+            color: #667eea;
+            font-weight: 500;
+        }
+        
+        .content {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section h2 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+        }
+        
+        .section h3 {
+            color: #764ba2;
+            margin: 25px 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .section h4 {
+            color: #5a67d8;
+            margin: 20px 0 10px 0;
+            font-size: 1.1em;
+        }
+        
+        .section p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .section ul, .section ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .section li {
+            margin-bottom: 10px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .info-box {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .toc {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .toc h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .toc li {
+            margin-bottom: 8px;
+        }
+        
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .toc a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+        
+        .back-link {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .back-link:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+        
+        .contact-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .contact-box h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .contact-box a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 30px;
+            opacity: 0.9;
+        }
+        
+        .footer a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+        
+        table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        table tr:hover {
+            background: #e9ecef;
+        }
+        
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header, .content {
+                padding: 25px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .section h2 {
+                font-size: 1.4em;
+            }
+        }
+        
+        /* 打印样式 */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .back-link, .footer {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 返回链接 -->
+        <a href="openclaw-intro.html#intro" class="back-link">← 返回首页</a>
+        
+        <!-- 页头 -->
+        <div class="header">
+            <h1>🔒 隐私政策</h1>
+            <p>OpenClaw 隐私保护声明</p>
+            <div class="update-date">
+                📅 最后更新：2026 年 4 月 2 日
+            </div>
+        </div>
+        
+        <!-- 目录 -->
+        <div class="content">
+            <div class="toc">
+                <h3>📑 目录</h3>
+                <ul>
+                    <li><a href="#intro">1. 引言</a></li>
+                    <li><a href="#data-collection">2. 信息收集</a></li>
+                    <li><a href="#data-use">3. 信息使用</a></li>
+                    <li><a href="#cookies">4. Cookie 和追踪技术</a></li>
+                    <li><a href="#third-party">5. 第三方服务</a></li>
+                    <li><a href="#data-protection">6. 数据安全</a></li>
+                    <li><a href="#your-rights">7. 您的权利</a></li>
+                    <li><a href="#children">8. 儿童隐私</a></li>
+                    <li><a href="#changes">9. 政策变更</a></li>
+                    <li><a href="#contact">10. 联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 引言 -->
+        <div class="content" id="intro">
+            <div class="section">
+                <h2>1. 引言</h2>
+                <p>欢迎使用 OpenClaw（以下简称"我们"或"本服务"）。我们非常重视您的隐私保护，本隐私政策旨在向您说明我们如何收集、使用、存储、共享和保护您的个人信息，以及您享有的相关权利。</p>
+                
+                <div class="highlight-box">
+                    <strong>💡 重要提示：</strong><br>
+                    • OpenClaw 是一个本地运行的 AI 助手框架，大部分数据处理在您的设备上完成<br>
+                    • 我们不会主动收集您的个人聊天记录和文件内容<br>
+                    • 请仔细阅读本政策，以了解我们对您信息的处理方式
+                </div>
+                
+                <p>通过使用我们的服务，您同意按照本隐私政策的规定处理您的信息。如果您不同意本政策的任何内容，请立即停止使用我们的服务。</p>
+            </div>
+        </div>
+        
+        <!-- 信息收集 -->
+        <div class="content" id="data-collection">
+            <div class="section">
+                <h2>2. 信息收集</h2>
+                
+                <h3>2.1 我们收集的信息类型</h3>
+                
+                <h4>📋 您主动提供的信息</h4>
+                <ul>
+                    <li><strong>账户信息：</strong> 当您配置 AI 模型时，可能需要提供 API 密钥、OAuth 令牌等认证信息（这些信息存储在本地）</li>
+                    <li><strong>配置信息：</strong> 您的偏好设置、工作区路径、渠道配置等</li>
+                    <li><strong>反馈信息：</strong> 当您向我们提交问题报告或建议时提供的信息</li>
+                </ul>
+                
+                <h4>🤖 自动收集的信息</h4>
+                <ul>
+                    <li><strong>设备信息：</strong> 操作系统类型、版本号、设备型号</li>
+                    <li><strong>使用日志：</strong> 启动时间、会话时长、功能使用频率（匿名统计）</li>
+                    <li><strong>错误日志：</strong> 崩溃报告、错误堆栈（用于问题排查）</li>
+                </ul>
+                
+                <h4>📝 本地存储的信息</h4>
+                <div class="info-box">
+                    <strong>🏠 本地数据（不上传到我们的服务器）：</strong><br>
+                    • 聊天记录和对话历史<br>
+                    • 工作区文件和文档<br>
+                    • 记忆文件（MEMORY.md、日常笔记）<br>
+                    • 自定义技能和配置
+                </div>
+                
+                <h3>2.2 我们不收集的信息</h3>
+                <ul>
+                    <li>❌ 您的真实姓名、身份证号、电话号码（除非您主动配置）</li>
+                    <li>❌ 您的聊天内容和个人文件（仅存储在本地）</li>
+                    <li>❌ 您的银行账户或支付信息（我们不直接处理支付）</li>
+                    <li>❌ 精确的地理位置信息</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 信息使用 -->
+        <div class="content" id="data-use">
+            <div class="section">
+                <h2>3. 信息使用</h2>
+                
+                <h3>3.1 我们如何使用收集的信息</h3>
+                <ul>
+                    <li><strong>提供服务：</strong> 运行 AI 助手、处理您的请求、保存配置</li>
+                    <li><strong>改进产品：</strong> 分析使用模式，优化功能和性能</li>
+                    <li><strong>技术支持：</strong> 诊断和解决技术问题</li>
+                    <li><strong>安全保护：</strong> 检测和防止欺诈、滥用或非法活动</li>
+                    <li><strong>通信联系：</strong> 发送重要通知、更新公告（需您同意）</li>
+                </ul>
+                
+                <h3>3.2 信息共享</h3>
+                <div class="warning-box">
+                    <strong>⚠️ 请注意：</strong> OpenClaw 本身不会共享您的个人信息，但以下情况除外：
+                </div>
+                <ul>
+                    <li><strong>第三方 AI 模型：</strong> 当您使用云端 AI 模型（如 Kimi、DeepSeek、Claude 等）时，您的对话内容会发送到对应服务商的服务器，受其隐私政策约束</li>
+                    <li><strong>法律要求：</strong> 根据法律法规要求、诉讼需要或政府机关要求</li>
+                    <li><strong>业务转让：</strong> 如发生合并、收购或资产转让，我们会要求新的持有方继续受本政策约束</li>
+                    <li><strong>您明确同意：</strong> 在您明确授权的情况下与其他方共享</li>
+                </ul>
+                
+                <h3>3.3 数据保留</h3>
+                <ul>
+                    <li><strong>本地数据：</strong> 只要您安装并使用 OpenClaw，数据会保留在您的设备上</li>
+                    <li><strong>日志文件：</strong> 错误日志和诊断信息默认保留 90 天</li>
+                    <li><strong>删除数据：</strong> 卸载 OpenClaw 时，您可以选择删除所有本地数据</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Cookie -->
+        <div class="content" id="cookies">
+            <div class="section">
+                <h2>4. Cookie 和追踪技术</h2>
+                
+                <h3>4.1 什么是 Cookie</h3>
+                <p>Cookie 是网站存储在您设备上的小型文本文件，用于记录您的偏好和浏览活动。</p>
+                
+                <h3>4.2 我们使用的 Cookie 类型</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>类型</th>
+                            <th>用途</th>
+                            <th>保留时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>必要 Cookie</strong></td>
+                            <td>网站基本功能运行（如会话管理）</td>
+                            <td>会话期间</td>
+                        </tr>
+                        <tr>
+                            <td><strong>功能 Cookie</strong></td>
+                            <td>记住您的偏好设置（如深色模式）</td>
+                            <td>1 年</td>
+                        </tr>
+                        <tr>
+                            <td><strong>分析 Cookie</strong></td>
+                            <td>Google Analytics 统计访问量（可选）</td>
+                            <td>2 年</td>
+                        </tr>
+                        <tr>
+                            <td><strong>广告 Cookie</strong></td>
+                            <td>Google AdSense 展示相关广告</td>
+                            <td>90 天</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>4.3 第三方 Cookie</h3>
+                <p>我们的网站可能包含第三方服务的 Cookie，例如：</p>
+                <ul>
+                    <li><strong>Google AdSense：</strong> 用于展示个性化广告</li>
+                    <li><strong>Google Analytics：</strong> 用于网站流量分析</li>
+                    <li><strong>GitHub Pages：</strong> 如果您通过 GitHub Pages 访问</li>
+                </ul>
+                
+                <h3>4.4 管理 Cookie</h3>
+                <p>您可以通过浏览器设置管理或禁用 Cookie：</p>
+                <ul>
+                    <li><strong>Chrome：</strong> 设置 → 隐私和安全 → Cookie 及其他网站数据</li>
+                    <li><strong>Firefox：</strong> 选项 → 隐私与安全 → Cookie 和网站数据</li>
+                    <li><strong>Safari：</strong> 偏好设置 → 隐私 → 管理网站数据</li>
+                    <li><strong>Edge：</strong> 设置 → Cookie 和网站权限</li>
+                </ul>
+                <div class="warning-box">
+                    ⚠️ <strong>注意：</strong> 禁用某些 Cookie 可能会影响网站功能
+                </div>
+            </div>
+        </div>
+        
+        <!-- 第三方服务 -->
+        <div class="content" id="third-party">
+            <div class="section">
+                <h2>5. 第三方服务</h2>
+                
+                <h3>5.1 集成的第三方服务</h3>
+                <p>OpenClaw 可能集成以下第三方服务，它们有各自的隐私政策：</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>服务提供商</th>
+                            <th>用途</th>
+                            <th>隐私政策</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Google AdSense</strong></td>
+                            <td>广告投放</td>
+                            <td><a href="https://policies.google.com/privacy" target="_blank">Google 隐私政策</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Google Analytics</strong></td>
+                            <td>网站分析</td>
+                            <td><a href="https://policies.google.com/privacy" target="_blank">Google 隐私政策</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>GitHub Pages</strong></td>
+                            <td>网站托管</td>
+                            <td><a href="https://docs.github.com/privacy-policy" target="_blank">GitHub 隐私政策</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Moonshot (Kimi)</strong></td>
+                            <td>AI 模型服务</td>
+                            <td><a href="https://platform.moonshot.cn/privacy" target="_blank">Moonshot 隐私政策</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>DeepSeek</strong></td>
+                            <td>AI 模型服务</td>
+                            <td><a href="https://platform.deepseek.com/privacy" target="_blank">DeepSeek 隐私政策</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>通义千问</strong></td>
+                            <td>AI 模型服务</td>
+                            <td><a href="https://www.aliyun.com/legal/privacy" target="_blank">阿里云隐私政策</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>5.2 外部链接</h3>
+                <p>我们的网站可能包含指向第三方网站或服务的链接。我们无法控制这些外部网站的内容或隐私实践，建议您阅读它们的隐私政策。</p>
+            </div>
+        </div>
+        
+        <!-- 数据安全 -->
+        <div class="content" id="data-protection">
+            <div class="section">
+                <h2>6. 数据安全</h2>
+                
+                <h3>6.1 安全措施</h3>
+                <p>我们采取合理的技术和组织措施保护您的信息安全：</p>
+                <ul>
+                    <li><strong>本地加密：</strong> 敏感配置信息（如 API 密钥）可加密存储</li>
+                    <li><strong>访问控制：</strong> 工作区文件权限管理</li>
+                    <li><strong>安全更新：</strong> 定期发布安全补丁和版本更新</li>
+                    <li><strong>代码审计：</strong> 开源代码接受社区监督</li>
+                </ul>
+                
+                <h3>6.2 您的安全责任</h3>
+                <div class="warning-box">
+                    <strong>⚠️ 请注意：</strong> 由于 OpenClaw 主要在您的本地设备上运行，您也负有重要的安全责任：
+                </div>
+                <ul>
+                    <li>妥善保管您的 API 密钥和认证信息</li>
+                    <li>定期更新 OpenClaw 到最新版本</li>
+                    <li>不要将配置文件提交到公共代码仓库</li>
+                    <li>使用强密码保护您的设备</li>
+                    <li>定期备份重要数据</li>
+                </ul>
+                
+                <h3>6.3 数据泄露通知</h3>
+                <p>如果我们发现任何可能影响您信息安全的数据泄露事件，我们将在 72 小时内通过可用渠道通知您。</p>
+            </div>
+        </div>
+        
+        <!-- 您的权利 -->
+        <div class="content" id="your-rights">
+            <div class="section">
+                <h2>7. 您的权利</h2>
+                
+                <h3>7.1 访问权</h3>
+                <p>您有权访问我们持有的您的个人信息。您可以随时查看本地配置文件和日志。</p>
+                
+                <h3>7.2 更正权</h3>
+                <p>您可以随时修改您的配置信息、偏好设置等。</p>
+                
+                <h3>7.3 删除权</h3>
+                <p>您有权要求删除您的数据：</p>
+                <ul>
+                    <li><strong>删除特定数据：</strong> 手动删除配置文件或日志</li>
+                    <li><strong>完全卸载：</strong> 运行 <code>openclaw uninstall --all</code> 删除所有数据</li>
+                </ul>
+                
+                <h3>7.4 导出权</h3>
+                <p>您可以导出您的数据：</p>
+                <pre><code># 导出聊天记录
+openclaw sessions export --format json --output backup.json
+
+# 备份工作区
+cp -r ~/.openclaw/workspace /your/backup/location</code></pre>
+                
+                <h3>7.5 撤回同意</h3>
+                <p>您可以随时撤回对数据处理的同意，但这可能影响某些功能的正常使用。</p>
+                
+                <h3>7.6 投诉权</h3>
+                <p>如您对我们的隐私处理有异议，您有权向相关监管机构投诉。</p>
+            </div>
+        </div>
+        
+        <!-- 儿童隐私 -->
+        <div class="content" id="children">
+            <div class="section">
+                <h2>8. 儿童隐私</h2>
+                
+                <p>我们的服务不面向 13 岁以下的儿童。我们不会故意收集 13 岁以下儿童的个人信息。</p>
+                
+                <div class="info-box">
+                    <strong>👶 家长须知：</strong><br>
+                    • 如果您发现您的孩子向我们提供了个人信息，请联系我们立即删除<br>
+                    • 建议家长监督未成年人的网络活动<br>
+                    • 教育儿童不要在网上分享个人信息
+                </div>
+            </div>
+        </div>
+        
+        <!-- 政策变更 -->
+        <div class="content" id="changes">
+            <div class="section">
+                <h2>9. 政策变更</h2>
+                
+                <p>我们可能会不时更新本隐私政策。更新后，我们会在以下位置发布新版本：</p>
+                <ul>
+                    <li>本页面（<a href="privacy-policy.html">privacy-policy.html</a>）</li>
+                    <li>GitHub 仓库的更新日志</li>
+                    <li>官方网站公告</li>
+                </ul>
+                
+                <p>重大变更时，我们会通过以下方式通知您：</p>
+                <ul>
+                    <li>网站显著位置公告</li>
+                    <li>电子邮件通知（如您已订阅）</li>
+                    <li>应用内提示</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <strong>📅 建议：</strong> 定期查看本页面，了解最新的隐私政策
+                </div>
+            </div>
+        </div>
+        
+        <!-- 联系我们 -->
+        <div class="content" id="contact">
+            <div class="section">
+                <h2>10. 联系我们</h2>
+                
+                <p>如您对本隐私政策有任何疑问、意见或建议，请通过以下方式联系我们：</p>
+                
+                <div class="contact-box">
+                    <h3>📧 联系方式</h3>
+                    <p><strong>电子邮件：</strong> <a href="mailto:privacy@openclaw.ai">privacy@openclaw.ai</a></p>
+                    <p><strong>GitHub Issues：</strong> <a href="https://github.com/openclaw/openclaw/issues" target="_blank">github.com/openclaw/openclaw/issues</a></p>
+                    <p><strong>Discord 社区：</strong> <a href="https://discord.com/invite/clawd" target="_blank">discord.gg/clawd</a></p>
+                    <p><strong>通信地址：</strong> （如有需要，请通过邮件联系获取）</p>
+                </div>
+                
+                <p>我们会在收到您的询问后 15 个工作日内回复。</p>
+            </div>
+        </div>
+        
+        <!-- 页脚 -->
+        <div class="footer">
+            <p>© 2026 OpenClaw Community. All rights reserved.</p>
+            <p>
+                <a href="openclaw-intro.html#intro">返回首页</a> | 
+                <a href="#intro">返回顶部</a>
+            </p>
+            <p style="margin-top: 15px; font-size: 0.85em; opacity: 0.8;">
+                本隐私政策符合 GDPR、CCPA 及中国《个人信息保护法》的基本要求
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // 自动更新年份
+        const yearSpans = document.querySelectorAll('.year');
+        yearSpans.forEach(span => {
+            span.textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
