@@ -824,17 +824,6 @@
     <!-- 目录切换按钮 -->
     <button class="toc-toggle" onclick="toggleTOC()" title="显示/隐藏目录">📑</button>
     
-    <!-- 搜索框 -->
-    <div style="position: fixed; bottom: 90px; right: 20px; z-index: 1001;">
-        <input type="text" id="searchBox" placeholder="🔍 搜索..." 
-               style="width: 200px; padding: 12px 15px; border: none; border-radius: 25px; 
-                      box-shadow: 0 5px 20px rgba(0,0,0,0.2); font-size: 0.95em;
-                      outline: none; transition: all 0.3s;"
-               onfocus="this.style.width='280px'" 
-               onblur="this.style.width='200px'"
-               oninput="searchContent(this.value)">
-    </div>
-    
     <!-- 目录侧边栏 -->
     <div class="toc-sidebar" id="tocSidebar">
         <h4>📑 目录</h4>
@@ -2487,44 +2476,7 @@ kill -9 &lt;进程 ID&gt;</code></pre>
             });
         });
         
-        // 搜索功能
-        let searchTimeout;
-        function searchContent(query) {
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => {
-                if (!query || query.length < 2) {
-                    document.querySelectorAll('.section').forEach(section => {
-                        section.style.display = '';
-                    });
-                    return;
-                }
-                
-                const q = query.toLowerCase();
-                document.querySelectorAll('.section').forEach(section => {
-                    const text = section.textContent.toLowerCase();
-                    if (text.includes(q)) {
-                        section.style.display = '';
-                        // 高亮匹配的关键词
-                        section.style.boxShadow = '0 10px 40px rgba(102, 126, 234, 0.3)';
-                    } else {
-                        section.style.display = 'none';
-                        section.style.boxShadow = '';
-                    }
-                });
-            }, 300);
-        }
-        
-        // ESC 键清除搜索
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.getElementById('searchBox').value = '';
-                document.getElementById('searchBox').blur();
-                document.querySelectorAll('.section').forEach(section => {
-                    section.style.display = '';
-                    section.style.boxShadow = '';
-                });
-            }
-        });
+
     </script>
 </body>
 </html>
