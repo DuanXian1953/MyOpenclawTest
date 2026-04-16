@@ -1,0 +1,88 @@
+/* i18n.css - Language switcher styles */
+
+/* 语言切换器容器 */
+.lang-switcher {
+    position: fixed;
+    top: 20px;
+    right: 80px;
+    display: flex;
+    gap: 5px;
+    z-index: 1002;
+    background: white;
+    padding: 5px;
+    border-radius: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+/* 语言按钮 */
+.lang-btn {
+    background: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #6c757d;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lang-btn:hover {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+}
+
+.lang-btn.active {
+    background: #667eea;
+    color: white;
+}
+
+/* 深色模式适配 */
+body.dark-mode .lang-switcher {
+    background: #1e1e2e;
+}
+
+body.dark-mode .lang-btn {
+    color: #a0a0a0;
+}
+
+body.dark-mode .lang-btn:hover {
+    background: rgba(118, 75, 162, 0.2);
+    color: #764ba2;
+}
+
+body.dark-mode .lang-btn.active {
+    background: #764ba2;
+    color: white;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .lang-switcher {
+        top: 15px;
+        right: 65px;
+        padding: 3px;
+    }
+    
+    .lang-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8em;
+    }
+}
+
+/* 当主题切换按钮不存在时的默认位置 */
+.lang-switcher:not(:has(+ .theme-toggle)) {
+    right: 20px;
+}
+
+/* 打印时隐藏 */
+@media print {
+    .lang-switcher {
+        display: none !important;
+    }
+}
