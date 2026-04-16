@@ -15,6 +15,10 @@
     <!-- Google Analytics（如有） -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script> -->
     
+    <!-- i18n 多语言支持 -->
+    <link rel="stylesheet" href="i18n.css">
+    <script src="i18n.js"></script>
+    
     <style>
         * {
             margin: 0;
@@ -278,16 +282,16 @@
         }
     </style>
 </head>
-<body>
+<body data-page="privacy">
     <div class="container">
         <!-- 返回链接 -->
-        <a href="openclaw-intro.html#intro" class="back-link">← 返回首页</a>
+        <a href="openclaw-intro.html#intro" class="back-link" data-i18n="nav.back">← 返回首页</a>
         
         <!-- 页头 -->
         <div class="header">
-            <h1>🔒 隐私政策</h1>
-            <p>OpenClaw 隐私保护声明</p>
-            <div class="update-date">
+            <h1>🔒 <span data-i18n="title.privacy">隐私政策</span></h1>
+            <p>OpenClaw Privacy Policy</p>
+            <div class="update-date" data-i18n="privacy.lastUpdated">
                 📅 最后更新：2026 年 4 月 2 日
             </div>
         </div>
@@ -648,10 +652,10 @@ cp -r ~/.openclaw/workspace /your/backup/location</code></pre>
         
         <!-- 页脚 -->
         <div class="footer">
-            <p>© 2026 OpenClaw Community. All rights reserved.</p>
+            <p data-i18n="footer.copyright">© 2026 OpenClaw Community. All rights reserved.</p>
             <p>
-                <a href="openclaw-intro.html#intro">返回首页</a> | 
-                <a href="#intro">返回顶部</a>
+                <a href="openclaw-intro.html#intro" data-i18n="nav.back">返回首页</a> | 
+                <a href="#intro" data-i18n="nav.backTop">返回顶部</a>
             </p>
             <p style="margin-top: 15px; font-size: 0.85em; opacity: 0.8;">
                 本隐私政策符合 GDPR、CCPA 及中国《个人信息保护法》的基本要求
